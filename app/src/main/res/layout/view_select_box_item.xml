@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_spinner_select_item">
+
+    <com.fpttelecom.train.android.customview.HintSpinner
+        android:id="@+id/spinnerSelect"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_30"
+        android:background="@color/colorTransparent" />
+
+    <ImageView
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="14dp"
+        android:src="@drawable/ic_arrow_down" />
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E4E0C6</color>
+    <color name="colorPrimaryHint">#003F64</color>
+    <color name="colorPrimaryDark">#FF3700B3</color>
+    <color name="colorTextPrimary">#8E8E93</color>
+    <color name="colorTextSecondary">#5F5F5F</color>
+    <color name="colorTextBlack">#FF000000</color>
+    <color name="colorTextWhite">#FFFFFFFF</color>
+    <color name="colorTextRed">#FF3B30</color>
+    <color name="colorBgWhite">#FFFFFFFF</color>
+    <color name="colorSplash">#FFFFFF</color>
+    <color name="colorTextFilter">#8A8A8A</color>
+    <color name="colorBgFilter">#003F64</color>
+    <color name="colorBgPopupMenu">#F2ECEC</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorLineDivide">#3C3C434A</color>
+    <color name="colorNavigationTextUnselected">#717171</color>
+    <color name="colorAccentDisable">#B59EAF</color>
+    <color name="colorTextHint">#CCCCCC</color>
+    <color name="colorPlaceHole">#FAFAFA</color>
+    <color name="colorBgButton">#F33636</color>
+    <color name="colorTextView">#37373E</color>
+    <color name="colorTextViewGreen">#17DD96</color>
+    <color name="colorTextViewBlue">#1363C0</color>
+    <color name="colorTextViewPink">#DD17D5</color>
+    <color name="colorBgFilterTypeContainer">#808F908D</color>
+</resources>

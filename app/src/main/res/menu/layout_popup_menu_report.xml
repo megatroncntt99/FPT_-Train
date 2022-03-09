@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuItemReportHandover"
+        android:title="Thêm BB nghiệm thu" />
+    <item
+        android:id="@+id/menuItemReportTechnique"
+        android:title="Thêm báo cáo kỹ thuật" />
+    <item
+        android:id="@+id/menuItemReportWork"
+        android:title="Thêm báo cáo công việc" />
+    <item
+        android:id="@+id/menuItemReportAccessory"
+        android:title="Thêm linh kiện" />
+    <item
+        android:id="@+id/menuItemReportIncurred"
+        android:title="Thêm phí phát sinh" />
+</menu>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llLoadError"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:paddingLeft="@dimen/spaces_max"
+        android:paddingRight="@dimen/spaces_max"
+        android:src="@drawable/ic_data_error"
+        tools:ignore="ContentDescription,ObsoleteLayoutParam" />
+
+    <TextView
+        android:id="@+id/textTitleError"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spaces_medium"
+        android:text="Xin lỗi vì sự bất tiện"
+
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_large"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/textContentError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spaces_normal"
+        android:paddingLeft="@dimen/spaces_very_large"
+        android:paddingRight="@dimen/spaces_very_large"
+        android:text="Xảy ra lỗi! Vui lòng thử lại sau"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/buttonRetry"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/spaces_very_large"
+        android:layout_marginTop="@dimen/spaces_medium"
+        android:layout_marginRight="@dimen/spaces_very_large"
+        android:text="Thử lại" />
+
+
+</LinearLayout>

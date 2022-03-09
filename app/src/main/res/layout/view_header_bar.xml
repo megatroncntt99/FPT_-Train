@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CardViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:padding="15dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintEnd_toStartOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorTextBlack" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/real_header_height"
+        android:layout_alignParentBottom="true"
+        android:ellipsize="end"
+        android:gravity="center|start"
+        android:lines="1"
+        android:paddingStart="@dimen/space_20"
+        android:textColor="#003F64"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/imageRight"
+        app:layout_constraintStart_toEndOf="@id/imageBack"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginEnd="?attr/actionBarSize"
+        app:layout_goneMarginStart="?attr/actionBarSize"
+        tools:ignore="SpUsage"
+        tools:text="Title" />
+
+    <ImageView
+        android:id="@+id/imageRight"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:padding="14dp"
+        android:src="@drawable/ic_add"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <View
+        android:id="@+id/viewHeaderBottomLine"
+        style="@style/LineHorizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorTransparent"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/view_header_bar" />
+
+    <com.fpttelecom.train.android.customview.LoadMoreRecyclerView
+        android:id="@+id/rvDemo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_10"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/btnConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        style="@style/ButtonRadius12Style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_30"
+        android:layout_marginVertical="@dimen/space_20"
+        android:backgroundTint="@color/bottom_nav_color"
+        android:text="Di chuyển camera"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvDemo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

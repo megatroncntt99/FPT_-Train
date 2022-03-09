@@ -1,0 +1,96 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Train" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryHint</item>
+        <item name="colorOnPrimary">@color/colorTextBlack</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorTextPrimary</item>
+        <item name="colorSecondaryVariant">@color/colorTextPrimary</item>
+        <item name="colorOnSecondary">@color/colorTextBlack</item>
+        <item name="android:windowBackground">@color/colorSplash</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/colorSplash</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
+        <item name="popupMenuStyle">@style/PopupMenu</item>
+
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/colorBgPopupMenu</item>
+    </style>
+
+    <style name="LineHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/line_height</item>
+        <item name="android:background">@color/colorLineDivide</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:background">@drawable/custom_bg_button</item>
+        <item name="android:textColorHint">@color/colorAccentDisable</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">@dimen/spaces_medium</item>
+        <item name="android:paddingEnd">@dimen/spaces_medium</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <!--<item name="android:stateListAnimator">@null</item>-->
+        <item name="android:layout_height">@dimen/button_height</item>
+    </style>
+
+    <style name="ButtonRadius12Style" parent="ButtonStyle">
+        <item name="android:background">@drawable/custom_bg_button_radius_12</item>
+    </style>
+
+    <style name="TitleTextBoldStyle" parent="TitleTextStyle">
+
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ProgressContent">
+        <item name="colorAccent">@color/colorPrimaryHint</item>
+    </style>
+
+    <style name="CardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Rounded
+        </item>
+        <item name="cardBackgroundColor">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Rounded" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerSizeBottomRight">15dp</item>
+        <item name="cornerSizeBottomLeft">15dp</item>
+    </style>
+
+    <style name="ContainerTabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/VoucherTabTextAppearance</item>
+        <item name="tabTextColor">#993C3C43</item>
+        <item name="tabSelectedTextColor">@color/colorTextBlack</item>
+    </style>
+
+    <style name="VoucherTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+</resources>

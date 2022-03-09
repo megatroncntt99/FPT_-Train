@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_google_play_store_link" translatable="false">"https://play.google.com/store/apps/details?id="</string>
+    <string name="app_market_link" translatable="false">"market://details?id="</string>
+    <string name="map_api_key" translatable="false">AIzaSyDjrVetrSIqyjFe4qoYDAPuu7qs7NRYy-w</string>
+    <string name="deep_link_schema" translatable="false">http</string>
+    <string name="deep_link_host" translatable="false">cmcapp.com</string>
+    <string name="default_notification_channel_id" translatable="false">CMC Notification Channel</string>
+    <string name="facebook_app_id" translatable="false">2185625698415926</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb2185625698415926</string>
+</resources>
