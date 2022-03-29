@@ -62,7 +62,7 @@ class LoadMoreRecyclerView : RecyclerView {
     }
 
     fun nextPage(): Int {
-        return currentPage + 1
+        return currentPage ++
     }
 
     fun currentPage(): Int {
@@ -105,7 +105,7 @@ class LoadMoreRecyclerView : RecyclerView {
                 if (dy < 0) isLoadMoreError = false
                 if (onLoadMoreListener != null && dy >= 0) {
                     totalItemCount = linearLayoutManager.itemCount
-                    linearLayoutManager.isAutoMeasureEnabled = true
+                    linearLayoutManager.isAutoMeasureEnabled=false
                     lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition()
                     if (totalItemCount > 0 && lastVisibleItem >= totalItemCount - 3) {
                         if (isLoading) return

@@ -9,7 +9,10 @@ import com.fpttelecom.train.android.R
 import com.fpttelecom.train.android.base.BaseActivity
 import com.fpttelecom.train.android.base.BaseFragment
 import com.fpttelecom.train.android.databinding.ActivityMainBinding
+import com.fpttelecom.train.android.view.demo.Demo2Fragment
 import com.fpttelecom.train.android.view.demo.DemoFragment
+import com.fpttelecom.train.android.view.demoCallApi.GitFragment
+import com.fpttelecom.train.android.view.demoDatabinding.DemoDataBindingFragment
 import com.fpttelecom.train.android.view.sample_view.SampleFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +25,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         ui = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-            makeNewScreenFlow(DemoFragment())
+            makeNewScreenFlow(GitFragment())
         }
 
         val darkTheme: Resources.Theme =

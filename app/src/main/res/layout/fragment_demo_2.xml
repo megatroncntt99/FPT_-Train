@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clStickFilter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:elevation="0dp"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="rlNewest,rlBestSell,rlPrice,rlSearchManager"
+            app:flow_wrapMode="aligned"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/rlNewest"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/colorBgWhite"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNewest"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Van1"
+                android:textColor="@color/colorTextBlack" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlBestSell"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_40"
+            android:animateLayoutChanges="true"
+            android:background="@color/colorBgWhite"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvBestSell"
+
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:text="Van2"
+                android:textColor="@color/colorPrimary" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlPrice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/colorBgWhite"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/space_5"
+                android:gravity="center"
+                android:text="Van3"
+                android:textColor="@color/colorPrimary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlSearchManager"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_40"
+            android:background="@color/colorBgWhite"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSearchManager"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:text="Van4"
+                android:textColor="@color/colorPrimary" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/vLine"
+            android:layout_width="@dimen/space_40"
+            android:layout_height="@dimen/space_3"
+            android:background="@color/colorTextBlack"
+            app:layout_constraintBottom_toBottomOf="@+id/rlNewest"
+            app:layout_constraintEnd_toEndOf="@+id/rlNewest"
+            app:layout_constraintStart_toStartOf="@+id/rlNewest" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/space_20"
+            android:background="@color/colorBgFilter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rlBestSell"
+            app:layout_constraintStart_toEndOf="@+id/rlNewest"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/space_20"
+            android:background="@color/colorBgFilter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rlPrice"
+            app:layout_constraintStart_toEndOf="@+id/rlBestSell"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/space_20"
+            android:background="@color/colorBgFilter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rlSearchManager"
+            app:layout_constraintStart_toEndOf="@+id/rlPrice"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llHeaderVan1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="Header Van 1"
+                    android:textColor="@color/colorTextBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.1"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.2"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.3"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.4"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.5"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.6"
+                    android:textColor="@color/colorTextBlack" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHeaderVan2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="Header Van 2"
+                    android:textColor="@color/colorTextBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.1"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.2"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.3"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.4"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.5"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.6"
+                    android:textColor="@color/colorTextBlack" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHeaderVan3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="Header Van 3"
+                    android:textColor="@color/colorTextBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.1"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.2"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.3"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.4"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.5"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.6"
+                    android:textColor="@color/colorTextBlack" />
+
+            </LinearLayout><LinearLayout
+                android:id="@+id/llHeaderVan5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="Header Van 1"
+                    android:textColor="@color/colorTextBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.1"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.2"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.3"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.4"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.5"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 1.6"
+                    android:textColor="@color/colorTextBlack" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHeaderVan4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="Header Van 2"
+                    android:textColor="@color/colorTextBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.1"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.2"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.3"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.4"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.5"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 2.6"
+                    android:textColor="@color/colorTextBlack" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHeaderVan6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="Header Van 3"
+                    android:textColor="@color/colorTextBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.1"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.2"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.3"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.4"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.5"
+                    android:textColor="@color/colorTextBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center|start"
+                    android:text="Van 3.6"
+                    android:textColor="@color/colorTextBlack" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

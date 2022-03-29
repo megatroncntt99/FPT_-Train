@@ -18,21 +18,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header" />
-
-    <Button
+    <RelativeLayout
         android:id="@+id/btnConfirm"
-        style="@style/ButtonRadius12Style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_30"
-        android:layout_marginVertical="@dimen/space_20"
-        android:backgroundTint="@color/bottom_nav_color"
-        android:text="Di chuyển camera"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="24sp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/custom_bg_button_radius_12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvDemo" />
-
+        android:layout_margin="@dimen/space_10"
+        android:backgroundTint="@color/bottom_nav_color"
+        app:layout_constraintTop_toBottomOf="@id/rvDemo">
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="24sp"
+            android:visibility="visible"
+            android:text="Di chuyển camera"/>
+        <ProgressBar
+            android:id="@+id/progressLoading"
+            android:layout_width="@dimen/spaces_large"
+            android:layout_height="@dimen/spaces_large"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:indeterminate="true"
+            android:theme="@style/ProgressContent" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

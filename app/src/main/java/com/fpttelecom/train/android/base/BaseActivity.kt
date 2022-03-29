@@ -9,17 +9,16 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.fpttelecom.train.android.R
+import com.fpttelecom.train.android.customview.CustomProgressDialog
 import com.fpttelecom.train.android.utils.*
 import org.greenrobot.eventbus.EventBus
 
 abstract class BaseActivity : AppCompatActivity() {
-
-    //    private val dialogLoading by lazy {
-//        DialogLoading(this)
-//    }
+    private var dialog: CustomProgressDialog? = null
     private val TIME_DELAYED_BACK_PRESS: Int = 250
     private var isFirstFragment = false
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +36,35 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun progressBarView() {
-//        if (dialogLoading.isShowing) return
-//        dialogLoading.showDialog()
+        try {
+            if (dialog == null) {
+                dialog = createDialogLoading()
+            }
+            if (dialog?.isShowing == false) {
+                dialog?.show()
+                Handler(Looper.getMainLooper()).postDelayed({ dialog?.dismiss() }, 30000)
+            }
+        } catch (e: java.lang.Exception) {
+
+        }
     }
 
     fun dismissProgressBar() {
-//        if (dialogLoading.isShowing) dialogLoading.closeDialog()
+        try {
+            if (dialog != null) {
+                dialog?.dismiss()
+            }
+        } catch (e: java.lang.Exception) {
+
+        }
+    }
+
+    open fun createDialogLoading(): CustomProgressDialog {
+        val dialog = CustomProgressDialog(this, R.style.NewLoadingTheme)
+        dialog.setOnDismissListener { _ -> { } }
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+        return dialog
     }
 
     fun hideKeyBoard() {
@@ -100,7 +122,8 @@ abstract class BaseActivity : AppCompatActivity() {
         LogCat.d("Activity - onBackPressed")
         if (lockBackPress) return
         if (!canBackPress) return
-        val fragment = supportFragmentManager.findFragmentById(FragmentUtils.CONTAINER_MAIN_FRAGMENT)
+        val fragment =
+            supportFragmentManager.findFragmentById(FragmentUtils.CONTAINER_MAIN_FRAGMENT)
         if (fragment is IOnBackPressed && (fragment as IOnBackPressed?)?.onBackPressed() == true) {
             return
         }
@@ -110,18 +133,33 @@ abstract class BaseActivity : AppCompatActivity() {
 
     /*SCREENS MOVING*/
     open fun <F : Fragment> makeNewScreenFlow(fragment: F) {
-        goToScreen(FragmentUtils.CONTAINER_MAIN_ACTIVITY, fragment, FragmentUtils.FLAG_NEW_TASK, null)
+        goToScreen(
+            FragmentUtils.CONTAINER_MAIN_ACTIVITY,
+            fragment,
+            FragmentUtils.FLAG_NEW_TASK,
+            null
+        )
     }
 
     open fun <F : Fragment> goToScreen(fragment: F) {
         val topFragment: Fragment = getTopFragment()
-        if (BaseFragment.getName(fragment.javaClass).equals(BaseFragment.getName(topFragment.javaClass))) return
+        if (BaseFragment.getName(fragment.javaClass)
+                .equals(BaseFragment.getName(topFragment.javaClass))
+        ) return
         goToScreen(FragmentUtils.CONTAINER_MAIN_FRAGMENT, fragment, FragmentUtils.FLAG_ADD, null)
     }
 
-    open fun <F : BaseFragment<*>> goToNewFragmentFromNotification(fragment: F, openNewFragment: Boolean) {
+    open fun <F : BaseFragment<*>> goToNewFragmentFromNotification(
+        fragment: F,
+        openNewFragment: Boolean
+    ) {
         if (openNewFragment) {
-            goToScreen(FragmentUtils.CONTAINER_MAIN_FRAGMENT, fragment, FragmentUtils.FLAG_ADD, null)
+            goToScreen(
+                FragmentUtils.CONTAINER_MAIN_FRAGMENT,
+                fragment,
+                FragmentUtils.FLAG_ADD,
+                null
+            )
         } else {
             val topFragment: BaseFragment<*>? = getTopFragment()
         }
@@ -145,7 +183,7 @@ abstract class BaseActivity : AppCompatActivity() {
         goToScreen(FragmentUtils.CONTAINER_MAIN_FRAGMENT, fragment, FragmentUtils.FLAG_ADD, null)
     }
 
-    open fun <F : Fragment>  goToScreen(
+    open fun <F : Fragment> goToScreen(
         containerLayoutResource: Int,
         fragment: F,
         actionFlag: Int,
@@ -156,14 +194,35 @@ abstract class BaseActivity : AppCompatActivity() {
         hideKeyboard()
         when (actionFlag) {
             FragmentUtils.FLAG_ADD -> {
-                FragmentUtils.add(supportFragmentManager, containerLayoutResource, fragment, true, element, true)
+                FragmentUtils.add(
+                    supportFragmentManager,
+                    containerLayoutResource,
+                    fragment,
+                    true,
+                    element,
+                    true
+                )
             }
             FragmentUtils.FLAG_REPLACE -> {
-                FragmentUtils.replace(supportFragmentManager, containerLayoutResource, fragment, false, element, false)
+                FragmentUtils.replace(
+                    supportFragmentManager,
+                    containerLayoutResource,
+                    fragment,
+                    false,
+                    element,
+                    false
+                )
             }
             FragmentUtils.FLAG_NEW_TASK -> {
                 clearAllScreens()
-                FragmentUtils.replace(supportFragmentManager, containerLayoutResource, fragment, true, element, false)
+                FragmentUtils.replace(
+                    supportFragmentManager,
+                    containerLayoutResource,
+                    fragment,
+                    true,
+                    element,
+                    false
+                )
             }
         }
     }
@@ -177,7 +236,14 @@ abstract class BaseActivity : AppCompatActivity() {
         delayBackPress(BaseFragment.DELAYED_TIME_START_SCREEN)
         hideKeyboard()
         FragmentUtils.remove(supportFragmentManager, fragment.javaClass.name)
-        FragmentUtils.add(supportFragmentManager, containerLayoutResource, fragment, true, element, true)
+        FragmentUtils.add(
+            supportFragmentManager,
+            containerLayoutResource,
+            fragment,
+            true,
+            element,
+            true
+        )
     }
 
     open fun <F : Fragment> reloadFragment(fragment: F) {
@@ -278,7 +344,9 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private fun detectFirstFragment() {
-        supportFragmentManager.addOnBackStackChangedListener { isFirstFragment = supportFragmentManager.backStackEntryCount == 1 }
+        supportFragmentManager.addOnBackStackChangedListener {
+            isFirstFragment = supportFragmentManager.backStackEntryCount == 1
+        }
     }
 
     open fun delayBackPress(time: Int) {
@@ -320,6 +388,7 @@ abstract class BaseActivity : AppCompatActivity() {
             canBackPress = false
             Handler(Looper.getMainLooper()).postDelayed({ canBackPress = true }, time.toLong())
         }
+
         fun isLockBackPress(): Boolean {
             return lockBackPress
         }

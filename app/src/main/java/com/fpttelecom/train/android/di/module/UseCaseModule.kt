@@ -2,6 +2,7 @@ package com.fpttelecom.train.android.di.module
 
 import com.fpttelecom.train.android.api.RequestService
 import com.fpttelecom.train.android.di.usecase.*
+import com.fpttelecom.train.android.room.UserRoomRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +23,18 @@ object UseCaseModule {
             getNotifications = GetNotifications(requestService),
             getNews = GetNews(requestService),
             getBook = GetBook(requestService)
+        )
+    }
+
+    @Provides
+    fun provideGitUseCase(
+        requestService: RequestService,
+        userRoomRepository: UserRoomRepository
+    ): GitUseCase {
+        return GitUseCase(
+            getListUser = GetListUser(requestService),
+            insertListUser = InsertListUser(userRoomRepository),
+            getListUserRoom = GetListUserRoom(userRoomRepository)
         )
     }
 }

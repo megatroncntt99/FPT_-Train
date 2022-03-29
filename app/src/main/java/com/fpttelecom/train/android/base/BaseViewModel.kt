@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fpttelecom.train.android.api.BaseRepo
 import com.fpttelecom.train.android.api.RepoManager
 import com.fpttelecom.train.android.api.ResultWrapper
 import kotlinx.coroutines.*
@@ -11,11 +12,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.coroutines.CoroutineContext
 
-open class BaseViewModel<R>() : ViewModel(), LifecycleObserver, CoroutineScope {
+open class BaseViewModel<R: BaseRepo>() : ViewModel(), LifecycleObserver, CoroutineScope {
 
     var _error = MutableStateFlow(ResultWrapper.ErrorThrowable("-1"))
     var error: StateFlow<ResultWrapper.ErrorThrowable> = _error
     var baseError: StateFlow<ResultWrapper.ErrorThrowable> = _error
+    protected var _isLoading = MutableStateFlow(false)
+    var isLoading: StateFlow<Boolean> = _isLoading
 
     var netWorkError = MutableLiveData<Boolean>()
     val viewModelJob = SupervisorJob()

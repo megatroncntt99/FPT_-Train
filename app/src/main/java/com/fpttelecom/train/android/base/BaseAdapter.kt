@@ -7,15 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.fpttelecom.train.android.R
+import com.fpttelecom.train.android.databinding.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 /**
  * Created by Nguyễn Văn Vân on 12/9/2021.
  */
-abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapter.BaseItemListener, DT> :
+abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapter.BaseItemListener, DT>(context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val data: MutableList<DT> = ArrayList()
     protected var itemListener: IL? = null
@@ -23,11 +24,13 @@ abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapte
     private var showLoading = true
     private var isError = false
 
+
     /* Định dạng layout */
     private var isShowHeaderOnEmpty = false
     private var isShowFooterOnEmpty = false
-    var context: Context? = null
 
+    protected val layoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     fun setShowHeaderOnEmpty(showHeaderOnEmpty: Boolean) {
         isShowHeaderOnEmpty = showHeaderOnEmpty
@@ -42,6 +45,7 @@ abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapte
     fun addData(items: List<DT>?) {
         var startPosition = data.size
         var itemCount = data.size
+
         if (items != null && items.isNotEmpty()) {
             data.addAll(items)
             if (startPosition != 0) startPosition++
@@ -141,41 +145,89 @@ abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapte
     }
 
     private fun getDefaultViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return FooterViewHolder(createView(parent, R.layout.x_item_default_empty_vertical))
+        return FooterViewHolder(
+            createView(
+                XItemDefaultEmptyVerticalBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     open fun getLoadMoreErrorViewHolder(parent: ViewGroup): LoadMoreErrorViewHolder {
-        return LoadMoreErrorViewHolder(createView(parent, R.layout.x_layout_list_load_more_error))
+        return LoadMoreErrorViewHolder(
+            createView(
+                XLayoutListLoadMoreErrorBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     open fun getErrorViewHolder(parent: ViewGroup): ErrorViewHolder {
-        return ErrorViewHolder(createView(parent, R.layout.x_layout_list_error))
+        return ErrorViewHolder(
+            createView(
+                XLayoutListErrorBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     open fun getLoadingViewHolder(parent: ViewGroup): LoadingViewHolder {
-        return LoadingViewHolder(createView(parent, R.layout.x_layout_list_loading))
+        return LoadingViewHolder(
+            createView(
+                XLayoutListLoadingBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     open fun getLoadMoreViewHolder(parent: ViewGroup): LoadMoreViewHolder {
-        return LoadMoreViewHolder(createView(parent, R.layout.x_item_loading_more_linear))
+        return LoadMoreViewHolder(
+            createView(
+                XItemLoadingMoreLinearBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     open fun getEmptyViewHolder(parent: ViewGroup): EmptyViewHolder {
-        return EmptyViewHolder(createView(parent, R.layout.x_layout_list_empty))
+        return EmptyViewHolder(
+            createView(
+                XLayoutListEmptyBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     open fun getHeaderViewHolder(parent: ViewGroup): HeaderViewHolder {
-        return HeaderViewHolder(createView(parent, R.layout.x_item_default_empty_vertical))
+        return HeaderViewHolder(
+            createView(
+                XItemDefaultEmptyVerticalBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     open fun getFooterViewHolder(parent: ViewGroup): FooterViewHolder {
-        return FooterViewHolder(createView(parent, R.layout.x_item_default_empty_vertical))
+        return FooterViewHolder(
+            createView(
+                XItemDefaultEmptyVerticalBinding.inflate(
+                    layoutInflater
+                )
+            )
+        )
     }
 
     protected abstract fun getCustomItemViewHolder(parent: ViewGroup): IVH
 
-    protected fun createView(parent: ViewGroup, layoutResource: Int): View {
-        return LayoutInflater.from(parent.context).inflate(layoutResource, parent, false)
+    protected fun createView(binding: ViewBinding): View {
+        return binding.root
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -246,7 +298,9 @@ abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapte
     }
 
     interface BaseItemListener {
-        fun onRetryClick()
+        fun onRetryClick(){
+
+        }
     }
 
     abstract class BaseItemViewHolder(itemView: View) :
@@ -267,7 +321,7 @@ abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapte
         }
     }
 
-    open inner class HeaderViewHolder (itemView: View) : RecyclerView.ViewHolder(
+    open inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(
         itemView
     ) {
         open fun setupView() {}
@@ -338,14 +392,14 @@ abstract class BaseAdapter<IVH : BaseAdapter.BaseItemViewHolder, IL : BaseAdapte
     }
 
     companion object {
-        protected const val VIEW_TYPE_ITEM = 0
-        private const val VIEW_TYPE_LOADING_MORE = 1
-        private const val VIEW_TYPE_LOADING = 2
-        private const val VIEW_TYPE_LIST_ERROR = 3
-        private const val VIEW_TYPE_LIST_EMPTY = 4
-        private const val VIEW_TYPE_LIST_LOAD_MORE_ERROR = 5
-        private const val VIEW_TYPE_HEADER = 6
-        private const val VIEW_TYPE_FOOTER = 7
-        private const val FADE_DURATION = 500
+        const val VIEW_TYPE_ITEM = 0
+        const val VIEW_TYPE_LOADING_MORE = 1
+        const val VIEW_TYPE_LOADING = 2
+        const val VIEW_TYPE_LIST_ERROR = 3
+        const val VIEW_TYPE_LIST_EMPTY = 4
+        const val VIEW_TYPE_LIST_LOAD_MORE_ERROR = 5
+        const val VIEW_TYPE_HEADER = 6
+        const val VIEW_TYPE_FOOTER = 7
+        const val FADE_DURATION = 500
     }
 }

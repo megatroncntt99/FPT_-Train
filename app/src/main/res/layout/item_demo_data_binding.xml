@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="modelItem"
+            type="com.fpttelecom.train.android.data.model.DemoModel" />
+
+        <variable
+            name="onclick"
+            type="android.view.View.OnClickListener" />
+
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:onClick="@{onclick}">
+
+        <TextView
+            android:id="@+id/tvPlaceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/ivCheck"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="@dimen/space_10"
+            android:text="@{modelItem.placeName}"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="@dimen/text_size_medium" />
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/space_10"
+            android:src="@{modelItem.select ?@drawable/ic_check:@drawable/ic_unchecked, default=@drawable/ic_unchecked}" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/space_10"
+            android:background="@color/colorTextPrimary" />
+
+
+        <ImageView
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/space_10"
+            app:imageUrl="@{modelItem.url}"
+
+           />
+    </RelativeLayout>
+</layout>

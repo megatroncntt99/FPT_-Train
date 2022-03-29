@@ -12,15 +12,19 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.addCallback
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fpttelecom.train.android.R
 import com.fpttelecom.train.android.api.RequestState
 import com.fpttelecom.train.android.api.UiState
 import com.fpttelecom.train.android.utils.Constants.TIME_OUT
+import com.fpttelecom.train.android.utils.ImageUtils
 import com.fpttelecom.train.android.utils.LogCat
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -218,7 +222,7 @@ private class GestureListener : SimpleOnGestureListener() {
 }
 
 fun RecyclerView.getCurrentPosition(): Int {
-    return (this.layoutManager as LinearLayoutManager?)!!.findFirstVisibleItemPosition()
+    return (this.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 }
 
 fun Fragment.push(id: Int) {
@@ -251,6 +255,28 @@ fun Fragment.launchWhenCreated(block: suspend CoroutineScope.() -> Unit) {
     lifecycleScope.launchWhenCreated { block.invoke(this) }
 }
 
+fun Fragment.initLaunch(vararg listBlock: suspend CoroutineScope.() -> Unit) {
+    listBlock.forEach {
+        launchWhenCreated { it.invoke(this) }
+    }
+}
+
+fun <T> handleStateFlow(
+    state: UiState<T>,
+    onSuccess: (() -> Unit)? = null,
+    onError: (() -> Unit)? = null,
+    onNon: (() -> Unit)? = null
+) {
+    when (state.state) {
+        RequestState.SUCCESS -> onSuccess?.invoke()
+        RequestState.ERROR -> onError?.invoke()
+        RequestState.NON -> onNon?.invoke()
+        else -> {
+
+        }
+    }
+}
+
 inline fun getValueAnimator(
     forward: Boolean = true,
     duration: Long,
@@ -275,12 +301,27 @@ fun <T> Flow<T>.onExpiredToken(): Flow<T> = transform { value ->
     return@transform emit(value)
 }
 
-suspend fun <T> checkStates(state: UiState<T>, success: suspend () -> Unit = {}, fail: suspend () -> Unit = {}) {
+suspend fun <T> checkStates(
+    state: UiState<T>,
+    success: suspend () -> Unit = {},
+    fail: suspend () -> Unit = {}
+) {
     if (state.state == RequestState.SUCCESS) success.invoke()
     else fail.invoke()
 }
 
-suspend fun <T, R> checkState(state: UiState<T>, success: suspend () -> R, fail: suspend () -> R) = flow {
-    if (state.state == RequestState.SUCCESS) emit(success.invoke())
-    else emit(fail.invoke())
+suspend fun <T, R> checkState(state: UiState<T>, success: suspend () -> R, fail: suspend () -> R) =
+    flow {
+        if (state.state == RequestState.SUCCESS) emit(success.invoke())
+        else emit(fail.invoke())
+    }
+
+@BindingAdapter("imageUrl")
+fun ImageView.loadImage(url: String) {
+    ImageUtils.loadImage(this, url)
+}
+
+@BindingAdapter("loadImageCircle",)
+fun ImageView.loadImageCircle(urlImage: String, ) {
+    ImageUtils.loadImageCircle(this, urlImage)
 }

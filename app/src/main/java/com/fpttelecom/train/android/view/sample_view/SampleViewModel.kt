@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import com.fpttelecom.train.android.api.RequestState
 import com.fpttelecom.train.android.api.UiState
 import com.fpttelecom.train.android.base.BaseViewModel
+import com.fpttelecom.train.android.di.usecase.HomeUseCase
 import com.fpttelecom.train.android.di.usecase.SampleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,14 +14,14 @@ import javax.inject.Inject
 @HiltViewModel
 class SampleViewModel @Inject constructor(
     val request: SampleUseCase,
+    val request1:HomeUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<SampleRepo>() {
 
     private val _uiStateSample = MutableStateFlow(UiState<Any>())
     val uiStateSample: StateFlow<UiState<Any>> = _uiStateSample
 
-    private var _isLoading = MutableStateFlow(false)
-    var isLoading: StateFlow<Boolean> = _isLoading
+
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getSomething() = viewModelScope {

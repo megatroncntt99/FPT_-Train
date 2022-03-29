@@ -4,11 +4,12 @@ import com.fpttelecom.train.android.di.module.ApiClientModule.CMC_API_KEY
 import com.fpttelecom.train.android.di.module.ApiClientModule.HEADER_API_KEY
 import com.fpttelecom.train.android.di.module.ApiClientModule.HEADER_LANG
 import com.fpttelecom.train.android.di.module.ApiClientModule.HEADER_UUID
+import com.fpttelecom.train.android.view.demoCallApi.GitRepo
 import com.fpttelecom.train.android.view.sample_view.SampleRepo
 import java.util.*
 import kotlin.collections.HashMap
 
-class RepoManager : SampleRepo
+class RepoManager : SampleRepo,GitRepo
 //    ,SampleRepo2,
 //    ...
 

@@ -42,7 +42,7 @@ object ApiClientModule {
             }
         }
         defaultRequest {
-            host = "xxx.xxx.xx.xx:xxxx/api"
+            host = "api.github.com"
             url { protocol = URLProtocol.HTTP }
         }
         engine {
