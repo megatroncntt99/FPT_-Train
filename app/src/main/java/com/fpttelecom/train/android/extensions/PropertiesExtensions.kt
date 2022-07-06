@@ -271,9 +271,6 @@ fun <T> handleStateFlow(
         RequestState.SUCCESS -> onSuccess?.invoke()
         RequestState.ERROR -> onError?.invoke()
         RequestState.NON -> onNon?.invoke()
-        else -> {
-
-        }
     }
 }
 
