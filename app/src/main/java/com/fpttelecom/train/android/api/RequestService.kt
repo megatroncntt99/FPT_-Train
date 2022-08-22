@@ -23,7 +23,6 @@ class RequestService @Inject constructor(private val client: HttpClient, val con
     * Nhớ tất cả request thành công thì phải 200
     * còn lỗi trong trường hợp BE xử lý sai gì đó mà vẫn ghi nhận thành công thì 200 + code lỗi
     * các lỗi còn lại theo HTTP code
-    * phần này nếu thấy khó handle liên lạc với anh
     * Sử dụng EventBus để bắn 1 thread về activity cho các case lỗi
     * */
 

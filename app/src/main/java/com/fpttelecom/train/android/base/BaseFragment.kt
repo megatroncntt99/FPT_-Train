@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.fpttelecom.train.android.extensions.launchWhenCreated
 import com.fpttelecom.train.android.utils.FragmentUtils
+import com.fpttelecom.train.android.utils.LanguageUtils
 import com.fpttelecom.train.android.utils.LogCat
 
 
@@ -32,9 +33,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogCat.d("Lifecycle in Fragment onCreate " + this.javaClass.name)
-        init()
         initViewModel()
-        handleError()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -44,6 +43,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         LogCat.d("Lifecycle in Fragment onCreateView " + this.javaClass.name)
+        init()
         return binding?.root?.apply {
             try {
                 setOnTouchListener { _, _ ->

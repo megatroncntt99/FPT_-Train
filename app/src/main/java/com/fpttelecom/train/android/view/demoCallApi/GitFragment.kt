@@ -2,12 +2,16 @@ package com.fpttelecom.train.android.view.demoCallApi
 
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.fpttelecom.train.android.base.BaseFragment
 import com.fpttelecom.train.android.data.model.UserResponse
 import com.fpttelecom.train.android.databinding.FragmentGitBinding
-import com.fpttelecom.train.android.extensions.handleStateFlow
-import com.fpttelecom.train.android.extensions.launchWhenCreated
+import com.fpttelecom.train.android.extensions.*
 import com.fpttelecom.train.android.utils.LogCat
+import com.fpttelecom.train.android.utils.PermissionUtil
+import com.fpttelecom.train.android.utils.PermissionUtil.launchMultiplePermission
+import com.fpttelecom.train.android.utils.PermissionUtil.launchSinglePermission
+import com.fpttelecom.train.android.utils.PermissionUtil.registerPermission
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -22,6 +26,46 @@ import kotlinx.coroutines.flow.collect
 class GitFragment : BaseFragment<FragmentGitBinding>() {
 
     private val viewModel by viewModels<GitViewModel>()
+    private val viewmo1 by lazy {ViewModelProvider(this).get(GitViewModel::class.java)  }
+
+    private val cameraPermission = registerPermission {
+        onCameraPermissionResult(it)
+    }
+
+    private val storagePermission = registerPermission {
+        onStoragePermissionResult(it)
+    }
+
+    //Get result with state
+    private fun onStoragePermissionResult(state: PermissionUtil.PermissionState) {
+        when (state) {
+            PermissionUtil.PermissionState.Denied -> {
+                LogCat.d("Denied Storage Permission")
+            }
+            PermissionUtil.PermissionState.Granted -> {
+                LogCat.d("Granted Storage Permission")
+            }
+            PermissionUtil.PermissionState.PermanentlyDenied -> {
+                LogCat.d("PermanentlyDenied Storage Permission")
+            }
+        }
+    }
+
+    //Get result with state
+    private fun onCameraPermissionResult(state: PermissionUtil.PermissionState) {
+        when (state) {
+            PermissionUtil.PermissionState.Denied -> {
+                LogCat.d("Denied Camera Permission")
+            }
+            PermissionUtil.PermissionState.Granted -> {
+                LogCat.d("Granted Camera Permission")
+            }
+            PermissionUtil.PermissionState.PermanentlyDenied -> {
+                LogCat.d("PermanentlyDenied Camera Permission")
+            }
+        }
+    }
+
 
     override fun getViewBinding() = FragmentGitBinding.inflate(layoutInflater)
 
@@ -58,20 +102,44 @@ class GitFragment : BaseFragment<FragmentGitBinding>() {
 
     override fun initView() {
         getVB().adapter = ListUserAdapter {
-            LogCat.d(it.login)
+            DemoBottomSheetFragment(it).show(childFragmentManager, "");
         }
     }
 
     override fun clickView() {
         getVB().setOnClickCallApi {
-            viewModel.getListUserGit()
+            launchWhenCreated {
+                requireContext().readDataStore("AAAAAA", String::class.java)?.let { LogCat.d(it) }
+            }
+//            viewModel.getListUserGit()
         }
         getVB().setOnClickLoadLocal {
             viewModel.getListUserRoomDB()
         }
+
+        getVB().setOnClickPermission {
+            //Single
+            cameraPermission.launchSinglePermission(android.Manifest.permission.CAMERA)
+
+            // Multiple
+            storagePermission.launchMultiplePermission(
+                arrayOf(
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+            )
+        }
     }
 
     override fun flowOnce() {
+        getVB().rvList.delayOnLifecycle(2000L) {
+
+        }
+        requireView().delayOnLifecycle(100L) {
+            launchWhenCreated {
+                requireContext().saveDataStore("AAAAAA", "Van")
+            }
+        }
 
     }
 

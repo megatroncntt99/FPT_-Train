@@ -6,6 +6,9 @@ import com.fpttelecom.train.android.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.internal.managers.ApplicationComponentManager
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
@@ -53,6 +56,7 @@ object ApiClientModule {
     }
 
     @Provides
+    @Singleton
     fun provideRequestService(client: HttpClient, activity: Application): RequestService {
         return RequestService(client, activity)
     }

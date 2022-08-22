@@ -14,6 +14,9 @@
         <variable
             name="onClickLoadLocal"
             type="android.view.View.OnClickListener" />
+        <variable
+            name="onClickPermission"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,8 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{onClickCallApi}"
-            android:text="Call api"
-
+            android:text="@string/test_string_change"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +40,14 @@
             android:onClick="@{onClickLoadLocal}"
             android:text="Load local"
             app:layout_constraintStart_toEndOf="@id/btnConfirm"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnPermission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClickPermission}"
+            android:text="Permission"
+            app:layout_constraintStart_toEndOf="@id/btn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView

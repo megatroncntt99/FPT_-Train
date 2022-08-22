@@ -3,8 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_demo.xml" value="0.14189189189189189" />
-        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/item_demo.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/drawable/bg_button_radius_12.xml" value="0.127" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/drawable/bg_place_hole_image_circle.xml" value="0.127" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/drawable/fragment_git.xml" value="0.175" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/drawable/selected_button.xml" value="0.1765" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/drawable/unslected_button.xml" value="0.1765" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/activity_main.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/bottom_sheet_fragment_demo.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/dialog_fragment_loading.xml" value="0.1" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_demo.xml" value="0.1" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_demo_2.xml" value="0.152" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_demo_data_binding.xml" value="0.1" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_git.xml" value="0.264" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_mvi_demo.xml" value="0.15021459227467812" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_sample.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/fragment_tab_change_scroll.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/item_cat.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/item_demo.xml" value="0.2" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/item_demo_data_binding.xml" value="0.1" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/item_demo_header.xml" value="0.11319444444444444" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/item_sub_cat.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/item_user_git.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/view_progress_loading.xml" value="0.12" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/x_item_default_empty_vertical.xml" value="0.11597222222222223" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/x_item_loading_more_linear.xml" value="0.1" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/x_layout_list_empty.xml" value="0.16216216216216217" />
+        <entry key="..\:/Android/FPT_Train/app/src/main/res/layout/x_layout_list_loading.xml" value="0.11319444444444444" />
         <entry key="..\:/Android/Working/CMC/app/src/main/res/layout/fragment_container_manage.xml" value="0.16216216216216217" />
         <entry key="..\:/Android/Working/CMC/app/src/main/res/layout/fragment_list_work.xml" value="0.16216216216216217" />
         <entry key="..\:/Android/Working/CMC/app/src/main/res/layout/fragment_login.xml" value="0.12" />

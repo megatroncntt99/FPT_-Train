@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Train</string>
+    <string name="test_string_change">English</string>
 </resources>

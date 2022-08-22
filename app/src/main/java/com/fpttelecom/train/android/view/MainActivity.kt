@@ -14,6 +14,7 @@ import com.fpttelecom.train.android.view.demo.DemoFragment
 import com.fpttelecom.train.android.view.demoCallApi.GitFragment
 import com.fpttelecom.train.android.view.demoDatabinding.DemoDataBindingFragment
 import com.fpttelecom.train.android.view.sample_view.SampleFragment
+import com.fpttelecom.train.android.view.tabChangeScroll.TabChangeScrollFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,12 +26,13 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         ui = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-            makeNewScreenFlow(GitFragment())
+            makeNewScreenFlow(TabChangeScrollFragment())
         }
 
         val darkTheme: Resources.Theme =
             ContextThemeWrapper(applicationContext, R.style.Theme_Train).theme
-        window.navigationBarColor = resources.getColor(android.R.color.black, darkTheme)
+//        window.navigationBarColor = resources.getColor(android.R.color.black, darkTheme)
+
         with(ui) {
             content.measureAllChildren
         }

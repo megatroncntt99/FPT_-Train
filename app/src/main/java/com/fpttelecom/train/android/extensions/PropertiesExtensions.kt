@@ -3,6 +3,7 @@ package com.fpttelecom.train.android.extensions
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputFilter
@@ -15,12 +16,17 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.*
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fpttelecom.train.android.R
 import com.fpttelecom.train.android.api.RequestState
 import com.fpttelecom.train.android.api.UiState
 import com.fpttelecom.train.android.utils.Constants.TIME_OUT
@@ -28,6 +34,7 @@ import com.fpttelecom.train.android.utils.ImageUtils
 import com.fpttelecom.train.android.utils.LogCat
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.transform
 
@@ -260,6 +267,15 @@ fun Fragment.initLaunch(vararg listBlock: suspend CoroutineScope.() -> Unit) {
         launchWhenCreated { it.invoke(this) }
     }
 }
+fun AppCompatActivity.launchWhenCreated(block: suspend CoroutineScope.() -> Unit) {
+    lifecycleScope.launchWhenCreated { block.invoke(this) }
+}
+
+fun AppCompatActivity.initLaunch(vararg listBlock: suspend CoroutineScope.() -> Unit) {
+    listBlock.forEach {
+        launchWhenCreated { it.invoke(this) }
+    }
+}
 
 fun <T> handleStateFlow(
     state: UiState<T>,
@@ -271,9 +287,6 @@ fun <T> handleStateFlow(
         RequestState.SUCCESS -> onSuccess?.invoke()
         RequestState.ERROR -> onError?.invoke()
         RequestState.NON -> onNon?.invoke()
-        else -> {
-
-        }
     }
 }
 
@@ -321,7 +334,85 @@ fun ImageView.loadImage(url: String) {
     ImageUtils.loadImage(this, url)
 }
 
-@BindingAdapter("loadImageCircle",)
-fun ImageView.loadImageCircle(urlImage: String, ) {
+@BindingAdapter("loadImageCircle")
+fun ImageView.loadImageCircle(urlImage: String) {
     ImageUtils.loadImageCircle(this, urlImage)
 }
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "setting")
+
+suspend fun <T> Context.saveDataStore(key: String, value: T) {
+    val dataStoreKey: Preferences.Key<*>
+    when (value) {
+        is String -> {
+            dataStoreKey = stringPreferencesKey(key)
+            dataStore.edit { setting ->
+                setting[dataStoreKey] = value
+            }
+        }
+        is Boolean -> {
+            dataStoreKey = booleanPreferencesKey(key)
+            dataStore.edit { setting ->
+                setting[dataStoreKey] = value
+            }
+        }
+        is Int -> {
+            dataStoreKey = intPreferencesKey(key)
+            dataStore.edit { setting ->
+                setting[dataStoreKey] = value
+            }
+        }
+        is Float -> {
+            dataStoreKey = floatPreferencesKey(key)
+            dataStore.edit { setting ->
+                setting[dataStoreKey] = value
+            }
+        }
+        is Long -> {
+            dataStoreKey = longPreferencesKey(key)
+            dataStore.edit { setting ->
+                setting[dataStoreKey] = value
+            }
+        }
+        is Double -> {
+            dataStoreKey = doublePreferencesKey(key)
+            dataStore.edit { setting ->
+                setting[dataStoreKey] = value
+            }
+        }
+    }
+
+
+}
+
+suspend fun <T> Context.readDataStore(key: String, clazz: Class<T>): T? {
+    val dataStoreKey: Preferences.Key<*>
+    val preferences = dataStore.data.first()
+    when (clazz) {
+        String::class.java -> {
+            dataStoreKey = stringPreferencesKey(key)
+            return preferences[dataStoreKey] as T
+        }
+        Boolean::class.java -> {
+            dataStoreKey = booleanPreferencesKey(key)
+            return preferences[dataStoreKey] as T
+        }
+        Int::class.java -> {
+            dataStoreKey = stringPreferencesKey(key)
+            return preferences[dataStoreKey] as T
+        }
+    }
+    return null
+}
+
+fun View.delayOnLifecycle(
+    durationInMillis: Long,
+    dispatcher: CoroutineDispatcher = Dispatchers.Main,
+    block: () -> Unit
+): Job? = findViewTreeLifecycleOwner()?.let {
+    it.lifecycle.coroutineScope.launch(dispatcher) {
+        delay(durationInMillis)
+        block()
+    }
+}
+

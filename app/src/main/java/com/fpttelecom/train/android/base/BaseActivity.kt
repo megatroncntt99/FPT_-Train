@@ -20,6 +20,9 @@ abstract class BaseActivity : AppCompatActivity() {
     private val TIME_DELAYED_BACK_PRESS: Int = 250
     private var isFirstFragment = false
 
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LanguageUtils.setLocale(it, LanguageUtils.getLanguageCode(it)) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

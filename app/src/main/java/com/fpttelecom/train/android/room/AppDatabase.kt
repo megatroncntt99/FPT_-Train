@@ -17,7 +17,7 @@ import androidx.room.TypeConverters
 abstract class AppDatabase : RoomDatabase() {
 
  companion object {
-  val DATABASE_NAME="user"
+  const val DATABASE_NAME="user"
  }
  abstract fun userDao() : UserDao
 }
