@@ -20,7 +20,7 @@ import com.fpttelecom.train.android.utils.LogCat
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
-    private val DELAYED_TIME_FOR_INIT_SCREEN = 160L
+    private  val DELAYED_TIME_FOR_INIT_SCREEN = 160L
 
     @Volatile
     protected var binding: VB? = null
