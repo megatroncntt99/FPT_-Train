@@ -26,7 +26,6 @@ class GitViewModel @Inject constructor(private val gitUseCase: GitUseCase) :
     private val _uiMessage = MutableStateFlow("Ban đầu")
     val uiMessage: StateFlow<String> = _uiMessage
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     fun getListUserGit() = viewModelScope {
         gitUseCase.getListUser(repo.repoGetListUser()).onStart {
             _isLoading.value = true

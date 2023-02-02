@@ -27,7 +27,7 @@ object PermissionUtil {
 
     private fun getPermissionState(
         activity: Activity?,
-        result: MutableMap<String, Boolean>
+        result: Map<String, Boolean>
     ): PermissionState {
         val deniedList: List<String> = result.filter {
             it.value.not()

@@ -111,7 +111,7 @@ class GitFragment : BaseFragment<FragmentGitBinding>() {
             launchWhenCreated {
                 requireContext().readDataStore("AAAAAA", String::class.java)?.let { LogCat.d(it) }
             }
-//            viewModel.getListUserGit()
+            viewModel.getListUserGit()
         }
         getVB().setOnClickLoadLocal {
             viewModel.getListUserRoomDB()

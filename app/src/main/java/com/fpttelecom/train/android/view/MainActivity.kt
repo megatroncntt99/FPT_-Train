@@ -13,6 +13,7 @@ import com.fpttelecom.train.android.view.demo.Demo2Fragment
 import com.fpttelecom.train.android.view.demo.DemoFragment
 import com.fpttelecom.train.android.view.demoCallApi.GitFragment
 import com.fpttelecom.train.android.view.demoDatabinding.DemoDataBindingFragment
+import com.fpttelecom.train.android.view.mviDemo.MVIDemoFragment
 import com.fpttelecom.train.android.view.sample_view.SampleFragment
 import com.fpttelecom.train.android.view.tabChangeScroll.TabChangeScrollFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +27,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         ui = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-            makeNewScreenFlow(TabChangeScrollFragment())
+            makeNewScreenFlow(GitFragment())
         }
 
         val darkTheme: Resources.Theme =
