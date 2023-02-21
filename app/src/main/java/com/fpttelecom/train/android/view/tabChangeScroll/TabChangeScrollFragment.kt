@@ -1,8 +1,12 @@
 package com.fpttelecom.train.android.view.tabChangeScroll
 
+import android.view.View
+import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fpttelecom.train.android.base.BaseFragment
+import com.fpttelecom.train.android.customview.LoadMoreGirdRecyclerView
 import com.fpttelecom.train.android.databinding.FragmentTabChangeScrollBinding
 
 /**
@@ -29,6 +33,7 @@ class TabChangeScrollFragment : BaseFragment<FragmentTabChangeScrollBinding>() {
 
         catModel.addAll(getCatModel(oneToFive, 0))
         subCatModel.add(SubCategoryModel(oneToFive, "one to five", true, 0))
+        binding?.tvSubCat?.text = subCatModel[0].name
 
         subCatModel.add(SubCategoryModel(sixToten, "six to ten", false, catModel.size + 1))
         catModel.addAll(getCatModel(sixToten, 1))
@@ -86,15 +91,14 @@ class TabChangeScrollFragment : BaseFragment<FragmentTabChangeScrollBinding>() {
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     linearLayoutManager?.let { lm ->
-                        val index = lm.findFirstVisibleItemPosition() + 2
+                        val index = lm.findFirstVisibleItemPosition()
                         if ((catModel.size) >= index) {
                             catModel[index].let { sd ->
                                 if (selectedSubCatPosition != sd.index) {
                                     selectedSubCatPosition = sd.index
                                     subCatAdapter?.updateList(selectedSubCatPosition)
-                                    getVB().rvSubCatAct.layoutManager?.scrollToPosition(
-                                        selectedSubCatPosition
-                                    )
+                                    getVB().rvSubCatAct.layoutManager?.scrollToPosition(selectedSubCatPosition)
+                                    binding?.tvSubCat?.setTextAnimation(subCatModel[sd.index].name ?:"")
                                 }
                             }
                         }
@@ -167,4 +171,38 @@ class TabChangeScrollFragment : BaseFragment<FragmentTabChangeScrollBinding>() {
         "29 for sixth tab",
         "30 for sixth tab"
     )
+}
+
+fun View.fadInAnimation(duration: Long = 300, completion: (() -> Unit)? = null) {
+    alpha = 0f
+    visibility = View.VISIBLE
+    animate()
+        .alpha(1f)
+        .setDuration(duration)
+        .withEndAction {
+            completion?.let {
+                it()
+            }
+        }
+}
+fun View.fadOutAnimation(duration: Long = 300, visibility: Int = View.GONE, completion: (() -> Unit)? = null) {
+    animate()
+        .alpha(0f)
+        .setDuration(duration)
+        .withEndAction {
+            this.visibility = visibility
+            completion?.let {
+                it()
+            }
+        }
+}
+fun TextView.setTextAnimation(text: String, duration: Long = 300, completion: (() -> Unit)? = null) {
+    fadOutAnimation(duration) {
+        this.text = text
+        fadInAnimation(duration) {
+            completion?.let {
+                it()
+            }
+        }
+    }
 }

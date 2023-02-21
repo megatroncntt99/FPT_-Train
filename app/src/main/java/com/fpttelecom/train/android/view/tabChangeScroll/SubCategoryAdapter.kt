@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.fpttelecom.train.android.R
 import com.fpttelecom.train.android.databinding.ItemSubCatBinding
+import com.fpttelecom.train.android.extensions.gone
+import com.fpttelecom.train.android.extensions.visible
 
 /**
  * Creator: Nguyen Van Van

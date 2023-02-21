@@ -18,5 +18,5 @@ task clean(type: Delete) {
 }
 
 ext {
-    glide_version = '4.11.0'
+    glide_version = '4.13.1'
 }

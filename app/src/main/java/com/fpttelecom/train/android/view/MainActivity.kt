@@ -27,7 +27,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         ui = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-            makeNewScreenFlow(GitFragment())
+            makeNewScreenFlow(TabChangeScrollFragment())
         }
 
         val darkTheme: Resources.Theme =
